@@ -79,23 +79,6 @@
               name="dob"
               class="bg-gray-100 inline-block rounded-lg shadow-md px-4 py-3 mb-5 text-base leading-6 placeholder-grey-500 focus:invalid:border-pink-500 focus:invalid:ring-pink-500"
             /><br />
-            <script>
-              const today = new Date();
-
-              const yyyy = today.getFullYear();
-              const mm = String(today.getMonth() + 1).padStart(2, "0");
-              const dd = String(today.getDate()).padStart(2, "0");
-
-              // Max: 18 years ago
-              const maxDate = `${yyyy - 18}-${mm}-${dd}`;
-
-              // Min: 55 years ago
-              const minDate = `${yyyy - 55}-${mm}-${dd}`;
-
-              const dobInput = document.getElementById("dob");
-              dobInput.max = maxDate;
-              dobInput.min = minDate;
-            </script>
 
             <label
               for="acceptTerms"
