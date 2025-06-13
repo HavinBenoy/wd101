@@ -127,7 +127,23 @@
     >
       <div class="mx-auto">
         <h2 class="text-3xl text-center font-bold leading-tight">Entries</h2>
-        <div class="divide-y divide-gray-300/50" id="user-entries"></div>
+        <div class="divide-y divide-gray-300/50">
+          <table
+            id="user-table"
+            class="table-auto w-full border border-collapse"
+          >
+            <thead>
+              <tr>
+                <th class="px-4 py-2">Name</th>
+                <th class="px-4 py-2">Email</th>
+                <th class="px-4 py-2">Password</th>
+                <th class="px-4 py-2">Dob</th>
+                <th class="px-4 py-2">Accepted terms?</th>
+              </tr>
+            </thead>
+            <tbody id="user-entries"></tbody>
+          </table>
+        </div>
       </div>
     </div>
 
