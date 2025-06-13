@@ -36,22 +36,12 @@ const displayEntries = () => {
     })
     .join("\n");
 
-  const table = `<table class="table-auto w-full">
-    <tr>
-      <th class="px-4 py-2">Name</th>
-      <th class="px-4 py-2">Email</th>
-      <th class="px-4 py-2">Password</th>
-      <th class="px-4 py-2">Dob</th>
-      <th class="px-4 py-2">Accepted terms?</th>
-    </tr>
-    ${tableEntries}
-  </table>`;
+  const table = `${tableEntries}`;
 
   let details = document.getElementById("user-entries");
   details.innerHTML = table;
 };
 
-let userEntries = [];
 const saveUserForm = (event) => {
   event.preventDefault();
   const name = document.getElementById("name").value;
@@ -70,6 +60,7 @@ const saveUserForm = (event) => {
     acceptedTermsAndConditions,
   };
 
+  const userEntries = retrieveEntries();
   userEntries.push(entry);
 
   localStorage.setItem("user-entries", JSON.stringify(userEntries));
@@ -78,3 +69,5 @@ const saveUserForm = (event) => {
 };
 
 userForm.addEventListener("submit", saveUserForm);
+
+displayEntries();
