@@ -1,3 +1,19 @@
+const today = new Date();
+
+const yyyy = today.getFullYear();
+const mm = String(today.getMonth() + 1).padStart(2, "0");
+const dd = String(today.getDate()).padStart(2, "0");
+
+// Max: 18 years ago
+const maxDate = `${yyyy - 18}-${mm}-${dd}`;
+
+// Min: 55 years ago
+const minDate = `${yyyy - 55}-${mm}-${dd}`;
+
+const dobInput = document.getElementById("dob");
+dobInput.max = maxDate;
+dobInput.min = minDate;
+
 let userForm = document.getElementById("user-form");
 
 const retrieveEntries = () => {
