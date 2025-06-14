@@ -1,3 +1,16 @@
+function calculateAge(dob) {
+  const birthDate = new Date(dob);
+  const today = new Date();
+  let age = today.getFullYear() - birthDate.getFullYear();
+  const m = today.getMonth() - birthDate.getMonth();
+
+  if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+    age--;
+  }
+
+  return age;
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   const today = new Date();
 
@@ -6,11 +19,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const dd = String(today.getDate()).padStart(2, "0");
 
   const maxDate = `${yyyy - 18}-${mm}-${dd}`; // 18 years ago
+  console.log(maxDate);
   const minDate = `${yyyy - 55}-${mm}-${dd}`; // 55 years ago
+  console.log(minDate);
 
   const dobInput = document.getElementById("dob");
-  dobInput.max = maxDate;
-  dobInput.min = minDate;
+  dobInput.setAttribute("max", maxDate);
+  dobInput.setAttribute("min", minDate);
 });
 
 let userForm = document.getElementById("user-form");
@@ -66,6 +81,12 @@ const saveUserForm = (event) => {
 
   const acceptedTermsAndConditions =
     document.getElementById("acceptTerms").checked;
+
+  const age = calculateAge(dob);
+  if (age < 18 || age > 55) {
+    alert("Age must be between 18 and 55 years.");
+    return;
+  }
 
   const entry = {
     name,
