@@ -6,7 +6,6 @@ document.addEventListener("DOMContentLoaded", () => {
   let dd = String(today.getDate()).padStart(2, "0");
 
   const maxDate = `${yyyy - 18}-${mm}-${dd}`; // 18 years ago
-  console.log(maxDate);
   // Now inorder to consider the people who are now 55 years and some months old we are substracting a 56 years and adding a day to the current date.
   let minDate = `${yyyy - 56}-${mm}-${dd}`;
   let new_minDate = new Date(minDate);
@@ -16,8 +15,6 @@ document.addEventListener("DOMContentLoaded", () => {
   mm = String(new_minDate.getMonth() + 1).padStart(2, "0");
   dd = String(new_minDate.getDate()).padStart(2, "0");
   new_minDate = `${yyyy}-${mm}-${dd}`;
-
-  console.log(new_minDate);
 
   const dobInput = document.getElementById("dob");
   dobInput.max = maxDate;
