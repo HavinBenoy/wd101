@@ -1,31 +1,27 @@
-function calculateAge(dob) {
-  const birthDate = new Date(dob);
-  const today = new Date();
-  let age = today.getFullYear() - birthDate.getFullYear();
-  const m = today.getMonth() - birthDate.getMonth();
-
-  if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-    age--;
-  }
-
-  return age;
-}
-
 document.addEventListener("DOMContentLoaded", () => {
   const today = new Date();
 
-  const yyyy = today.getFullYear();
-  const mm = String(today.getMonth() + 1).padStart(2, "0");
-  const dd = String(today.getDate()).padStart(2, "0");
+  let yyyy = today.getFullYear();
+  let mm = String(today.getMonth() + 1).padStart(2, "0");
+  let dd = String(today.getDate()).padStart(2, "0");
 
   const maxDate = `${yyyy - 18}-${mm}-${dd}`; // 18 years ago
   console.log(maxDate);
-  const minDate = `${yyyy - 55}-${mm}-${dd}`; // 55 years ago
-  console.log(minDate);
+  // Now inorder to consider the people who are now 55 years and some months old we are substracting a 56 years and adding a day to the current date.
+  let minDate = `${yyyy - 56}-${mm}-${dd}`;
+  let new_minDate = new Date(minDate);
+  new_minDate.setDate(new_minDate.getDate() + 1);
+  // Now structuring the date in the format YYYY-MM-DD
+  yyyy = new_minDate.getFullYear();
+  mm = String(new_minDate.getMonth() + 1).padStart(2, "0");
+  dd = String(new_minDate.getDate()).padStart(2, "0");
+  new_minDate = `${yyyy}-${mm}-${dd}`;
+
+  console.log(new_minDate);
 
   const dobInput = document.getElementById("dob");
-  dobInput.setAttribute("max", maxDate);
-  dobInput.setAttribute("min", minDate);
+  dobInput.max = maxDate;
+  dobInput.min = new_minDate;
 });
 
 let userForm = document.getElementById("user-form");
@@ -81,12 +77,6 @@ const saveUserForm = (event) => {
 
   const acceptedTermsAndConditions =
     document.getElementById("acceptTerms").checked;
-
-  const age = calculateAge(dob);
-  if (age < 18 || age > 55) {
-    alert("Age must be between 18 and 55 years.");
-    return;
-  }
 
   const entry = {
     name,
